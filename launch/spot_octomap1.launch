@@ -1,0 +1,27 @@
+<launch>
+    <include file="$(find spot_config)/launch/gazebo.launch">
+        <arg name="rviz" value="false"/>
+    </include>
+
+
+
+    <node pkg="octomap_server" type="octomap_server_node" name="octomap_server">
+        <param name="resolution" value="0.05"/>
+
+        <param name="frame_id" type ="string" value="odom" />
+
+        <param name="snesor_model/max_range" value="5"/>
+
+        <remap from="cloud_in" to="/camera/depth/points"/>
+    </node>
+
+    <include file="$(find champ_teleop)/launch/teleop.launch">
+    </include>
+
+    <node name="rviz" pkg="rviz" type="rviz"
+        args="-d $(find mfmn)/rviz/spot_octomap.rviz" 
+        output="screen" required="true">
+    </node>
+
+</launch>
+

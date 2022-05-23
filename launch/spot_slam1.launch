@@ -1,0 +1,14 @@
+<launch>
+    <include file="$(find spot_config)/launch/gazebo.launch">
+        <arg name="rviz" value="false"/>
+    </include>
+
+    <include file="$(find spot_config)/launch/slam.launch">
+        <arg name="rviz" value="true"/>
+    </include>
+
+    <include file="$(find champ_teleop)/launch/teleop.launch">
+    </include>
+
+</launch>
+
